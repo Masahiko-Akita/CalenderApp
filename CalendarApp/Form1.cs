@@ -108,14 +108,14 @@ namespace CalendarApp
             textBoxMonth.Text = _curMonth.ToString();
 
 
-            //// TODO  サンプル
-            //EventDataContainer container = new EventDataContainer();
-            //List<EventTableData> datas = container.GetData();
-            //foreach (EventTableData data in datas)
-            //{
-            //    DateTime startDate = data.GetStartDate();
-            //    MessageBox.Show(startDate.ToString("yyyy/MM/dd"));
-            //}
+            // TODO  サンプル
+            EventDataContainer container = new EventDataContainer();
+            List<EventTableData> eventDatas = container.GetData();
+            foreach (EventTableData anEventData in eventDatas)
+            {
+                DateTime startDate = anEventData.GetStartDate();
+                MessageBox.Show(startDate.ToString("yyyy/MM/dd"));
+            }
 
         }
 

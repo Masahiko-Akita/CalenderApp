@@ -1,6 +1,10 @@
-﻿using DataContainer;
+﻿// EventTableAccessor.cs
+using DataContainer;
 using System;
 using System.Collections.Generic;
+
+// DBのフィールド名と型名を関連付ける
+using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
 
 namespace DBAccessor
 {
@@ -14,10 +18,11 @@ namespace DBAccessor
         {
         }
 
+        // DBのフィールド名と型名を関連付ける
         // TODO あとでEventTableDataに移動する
-        public override Dictionary<string, DataType.Types> GetColumnInfo()
+        public override DicColumnInfoType GetColumnInfo()
         {
-            Dictionary<string, DataType.Types> info = new Dictionary<string, DataType.Types>();
+            DicColumnInfoType info = new DicColumnInfoType();
             info.Add(EventDataKey.CalendarID, DataType.Types.Integer);
             info.Add(EventDataKey.EventID, DataType.Types.Integer);
             info.Add(EventDataKey.EventDateID, DataType.Types.Integer);

@@ -1,4 +1,6 @@
-﻿namespace DBAccessor
+﻿// EventDataKey.cs
+// データーベースのフィールド名を定義したクラス
+namespace DBAccessor
 {
     public class EventDataKey
     {

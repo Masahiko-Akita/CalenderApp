@@ -1,4 +1,6 @@
-﻿using System;
+﻿// EventTableData.cs
+// イベント(予定)のクラス
+using System;
 
 namespace DataContainer
 {
