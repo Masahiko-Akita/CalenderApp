@@ -6,22 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DBAccessor;
 
-// DBのフィールド名と型名を関連付ける
-using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
-
-// DBの1レコードに対応する
-// DBのフィールドとそこに格納されている値をDictionayコンテナで集める。
-// とりあえず string型で取り出す。
-// 後で各型に変換する
-using DicDBRecord = System.Collections.Generic.Dictionary<string, string>;
-
-// Selet文の実行結果は複数レコードで帰ってくるので
-// DicDBRecord をリストで管理したもの
-//  List<DicDBRecord>
-// どうして ↑ で定義した型名 DicDBRecordが書けないのか...ぶつぶつ
-using ListDBResult = System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, string>>;
-
-
 namespace DataContainer
 {
     public class EventDataContainer : AbstractDataContainer<EventTableData>
@@ -35,7 +19,9 @@ namespace DataContainer
             //return accessor.GetData();
             List<EventTableData> tableData = new List<EventTableData>();
 
-            // Select文で実行した全レコードデータ。複数の場合がありうる
+            // Select文を実行する。
+            // 戻り値はSelectの条件に一致した全レコードデータ。
+            // 複数(行)の場合がありうる
             ListDBResult selectResult = accessor.getSelectData();
 
             // 全レコードの中に対するループ
@@ -96,6 +82,7 @@ namespace DataContainer
                 catch (Exception ex)
                 {
                     // TODO：何らかの例外処理をする
+                    // ブレークポイント用
                     int a = 0;
                 }
 
@@ -109,6 +96,5 @@ namespace DataContainer
 
             return tableData;
         }
-
     }
 }

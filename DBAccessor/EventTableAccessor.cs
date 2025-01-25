@@ -3,9 +3,6 @@ using DataContainer;
 using System;
 using System.Collections.Generic;
 
-// DBのフィールド名と型名を関連付ける
-using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
-
 namespace DBAccessor
 {
     public class EventTableAccessor : AbstractTableAccessor

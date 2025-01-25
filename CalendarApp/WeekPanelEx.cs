@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿// WeekPanelEx.cs
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CalendarApp
