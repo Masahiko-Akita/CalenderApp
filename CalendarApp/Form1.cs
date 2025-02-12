@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace CalendarApp
 {
@@ -163,22 +164,13 @@ namespace CalendarApp
         }
 
         /// <summary>
-        /// メッセージボックスを表示
+        /// イベント入力画面を表示
         /// </summary>
-        /// <param name="message"></param>
-        public void ShowMessage(string message)
+        /// <param name="targetDate"></param>
+        public void ShowEventInput(DateTime targetDate)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            string solutionName = assembly.GetName().Name;
-
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new Action(() => MessageBox.Show(this, message, solutionName)));
-            }
-            else
-            {
-                MessageBox.Show(this, message, solutionName);
-            }
+            InputEventDay eventDayDlg = new InputEventDay(targetDate);
+            eventDayDlg.Show();
         }
     }
 }

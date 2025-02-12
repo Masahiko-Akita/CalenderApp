@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using DataContainer;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace CalendarApp
 {
@@ -67,7 +68,9 @@ namespace CalendarApp
             Form form = this.FindForm();
             if (form is Form1 mainForm)
             {
-                mainForm.ShowMessage(_targetDateTime.ToString("yyyy/MM/dd") + " ToDo:イベント入力画面に飛びたい");
+                // mainForm.ShowMessage(_targetDateTime.ToString("yyyy/MM/dd") + " ToDo:イベント入力画面に飛びたい");
+                // イベント入力画面を表示
+                mainForm.ShowEventInput(_targetDateTime);
             }
         }
     }

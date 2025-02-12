@@ -1,13 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\src\\C#\\TechnoPro\\CalendarApp_kondryoh_20250122\\CalendarApp\\",
+  "WorkspaceRootPath": "D:\\src\\C#\\TechnoPro\\rep\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|d:\\src\\c#\\technopro\\calendarapp_kondryoh_20250122\\calendarapp\\calendarapp\\daypanelex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|d:\\src\\c#\\technopro\\rep\\calendarapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|solutionrelative:calendarapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|d:\\src\\c#\\technopro\\rep\\calendarapp\\daypanelex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|solutionrelative:calendarapp\\daypanelex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|D:\\src\\C#\\TechnoPro\\CalendarApp_kondryoh_20250122\\CalendarApp\\calendarapp\\dateinfochanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|D:\\src\\C#\\TechnoPro\\rep\\calendarapp\\dateinfochanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7DA6D24A-91F2-4AC7-AFD3-7FC98AAF5E32}|CalendarApp\\CalendarApp.csproj|solutionrelative:calendarapp\\dateinfochanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,30 +22,51 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\src\\C#\\TechnoPro\\rep\\CalendarApp\\Form1.cs",
+              "RelativeDocumentMoniker": "CalendarApp\\Form1.cs",
+              "ToolTip": "D:\\src\\C#\\TechnoPro\\rep\\CalendarApp\\Form1.cs",
+              "RelativeToolTip": "CalendarApp\\Form1.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAAAKYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T10:58:42.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "DayPanelEx.cs",
-              "DocumentMoniker": "D:\\src\\C#\\TechnoPro\\CalendarApp_kondryoh_20250122\\CalendarApp\\CalendarApp\\DayPanelEx.cs",
+              "DocumentMoniker": "D:\\src\\C#\\TechnoPro\\rep\\CalendarApp\\DayPanelEx.cs",
               "RelativeDocumentMoniker": "CalendarApp\\DayPanelEx.cs",
-              "ToolTip": "D:\\src\\C#\\TechnoPro\\CalendarApp_kondryoh_20250122\\CalendarApp\\CalendarApp\\DayPanelEx.cs",
+              "ToolTip": "D:\\src\\C#\\TechnoPro\\rep\\CalendarApp\\DayPanelEx.cs",
               "RelativeToolTip": "CalendarApp\\DayPanelEx.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAUwEkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-22T12:16:13.2Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DateInfoChanger.cs",
-              "DocumentMoniker": "D:\\src\\C#\\TechnoPro\\CalendarApp_kondryoh_20250122\\CalendarApp\\CalendarApp\\DateInfoChanger.cs",
+              "DocumentMoniker": "D:\\src\\C#\\TechnoPro\\rep\\CalendarApp\\DateInfoChanger.cs",
               "RelativeDocumentMoniker": "CalendarApp\\DateInfoChanger.cs",
-              "ToolTip": "D:\\src\\C#\\TechnoPro\\CalendarApp_kondryoh_20250122\\CalendarApp\\CalendarApp\\DateInfoChanger.cs",
+              "ToolTip": "D:\\src\\C#\\TechnoPro\\rep\\CalendarApp\\DateInfoChanger.cs",
               "RelativeToolTip": "CalendarApp\\DateInfoChanger.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAABUAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAABUAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-27T11:36:01.095Z",
               "EditorCaption": ""
