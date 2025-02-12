@@ -10,7 +10,7 @@ namespace CalendarApp
     internal class DayPanelEx : Panel
     {
         // データベースに渡すため表示中の日付を保持しておく
-        DateTime m_date;    // TODO メンバー変数として持っておく必要があるかは要検討
+        DateTime _targetDateTime;    // TODO メンバー変数として持っておく必要があるかは要検討
 
         /// <summary>
         /// コンストラクター
@@ -43,7 +43,7 @@ namespace CalendarApp
             // TODO nTargetは何に使う？
 
             // メンバ変数に保存
-            m_date = date;
+            _targetDateTime = date;
 
             // 表示するのは日付部分のみ
             foreach (Control control in this.Controls)
@@ -64,10 +64,11 @@ namespace CalendarApp
         /// <param name="e">イベントデータを含むEventArgsオブジェクト</param>
         public void OnDoubleClick(Object sender, EventArgs e)
         {
-            // ToDo イベント入力画面
-            //MessageBox.Show(m_date.ToString("yyyy/MM/dd") + " ToDo:イベント入力画面に飛びたい");
-            InputEventDay test = new InputEventDay(m_date);
-            test.Show();
+            Form form = this.FindForm();
+            if (form is Form1 mainForm)
+            {
+                mainForm.ShowMessage(_targetDateTime.ToString("yyyy/MM/dd") + " ToDo:イベント入力画面に飛びたい");
+            }
         }
     }
 }
