@@ -1,23 +1,5 @@
-﻿// SqlExecutor.cs
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
-using System.IO;
-using DataContainer;
-
-// DBのフィールド名と型名を関連付ける
-using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
-
-// DBの1レコードに対応する
-// DBのフィールドとそこに格納されている値をDictionayコンテナで集める。
-// とりあえず string型で取り出す。
-// 後で各型に変換する
-using DicDBRecord = System.Collections.Generic.Dictionary<string, string>;
-
-// Selet文の実行結果は複数レコードで帰ってくるので
-// DicDBRecord をリストで管理したもの
-//  List<DicDBRecord>
-// どうして ↑ で定義した型名 DicDBRecordが書けないのか...ぶつぶつ
-using ListDBResult = System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, string>>;
 
 namespace DBAccessor
 {
@@ -34,43 +16,34 @@ namespace DBAccessor
         /// <param name="query">SELECT文</param>
         /// <param name="ColumnInfo">カラム情報</param>
         /// <returns>全レコードデータ</returns>
-        public ListDBResult Read(string strQuery, DicColumnInfoType ColumnInfo)
+        public List<Dictionary<string, string>> Read(string query, List<string> ColumnInfo)
         {
-            // 戻り値用のデータを用意する
-            ListDBResult retList = new ListDBResult();
+            // 全レコードデータ
+            List<Dictionary<string, string>> values = new List<Dictionary<string, string>>();
 
-            // DBに接続
             using (SQLiteConnection connection = new SQLiteConnection(m_connectionString))
             {
-                // DB Open
                 connection.Open();
 
-                // SQL実行
-                using (SQLiteCommand command = new SQLiteCommand(strQuery, connection))
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                    // select文の実行結果に対する処理
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        // select文で見つけたレコード毎にループ
                         while (reader.Read())
                         {
-                            // 1レコード分の結果を格納するインスタンスを用意
-                            DicDBRecord recordData = new DicDBRecord();
+                            // 1レコード分の値
+                            Dictionary<string, string> recordData = new Dictionary<string, string>();
 
-                            // フィールド毎にループ
-                            foreach (string ColumnName in ColumnInfo.Keys)
+                            foreach (string ColumnName in ColumnInfo)
                             {
-                                // レコード結果(Dictionary)に追加
                                 recordData.Add(ColumnName, reader[ColumnName].ToString());
                             }
-
-                            // レコード結果 を 戻り値用のリストに追加
-                            retList.Add(recordData);
+                            values.Add(recordData);
                         }
                     }
                 }
             }
-            return retList;
+            return values;
         }
 
         /// <summary>
@@ -78,13 +51,13 @@ namespace DBAccessor
         /// </summary>
         /// <param name="query"></param>
         /// <returns>実行結果</returns>
-        public int Execute(string strQuery)
+        public int Execute(string query)
         {
             using (SQLiteConnection connection = new SQLiteConnection(m_connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(strQuery, connection))
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
                     return command.ExecuteNonQuery();
                 }

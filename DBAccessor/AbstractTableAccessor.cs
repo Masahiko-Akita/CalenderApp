@@ -1,28 +1,10 @@
-﻿// AbstractTableAccessor.cs
-using DataContainer;
-using System.Collections.Generic;
-
-// DBのフィールド名と型名を関連付ける
-using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
-
-// DBの1レコードに対応する
-// DBのフィールドとそこに格納されている値をDictionayコンテナで集める。
-// とりあえず string型で取り出す。
-// 後で各型に変換する
-using DicDBRecord = System.Collections.Generic.Dictionary<string, string>;
-
-// Selet文の実行結果は複数レコードで帰ってくるので
-// DicDBRecord をリストで管理したもの
-//  using ListDBResult = List<DicDBRecord>
-// と書きたいができない
-using ListDBResult = System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, string>>;
+﻿using System.Collections.Generic;
 
 namespace DBAccessor
 {
     public abstract class AbstractTableAccessor
     {
-        // Select文で引っかかった全レコートの結果
-        private ListDBResult m_selectData = new ListDBResult();
+        private List<Dictionary<string, string>> m_selectData = new List<Dictionary<string, string>>();
 
         /// <summary>
         /// コンストラクター
@@ -31,38 +13,17 @@ namespace DBAccessor
         {
         }
 
-        // DBのフィールド名と型名
-        public abstract DicColumnInfoType GetColumnInfo();
-
-        public abstract string GetSelectSql();
-
-        /// <summary>
-        /// データ抽出
-        /// </summary>
-        protected void SelectData()
-        {
-            m_selectData.Clear();
-
-            string query = GetSelectSql();
-            // 欲しいフィールドの情報
-            DicColumnInfoType columnInfo = GetColumnInfo();
-
-            SqlExecutor executor = new SqlExecutor();
-            m_selectData = executor.Read(query, columnInfo);
-        }
+        public abstract List<string> GetColumnInfo();
 
         /// <summary>
         /// 抽出したデータを取得
         /// </summary>
         /// <returns>抽出したデータ</returns>
-        public ListDBResult getSelectData()
+        public List<Dictionary<string, string>> getSelectData(string query)
         {
             m_selectData.Clear();
 
-            string query = GetSelectSql();
-
-            // 欲しいフィールドの情報
-            DicColumnInfoType columnInfo = GetColumnInfo();
+            List<string> columnInfo = GetColumnInfo();
 
             SqlExecutor executor = new SqlExecutor();
             m_selectData = executor.Read(query, columnInfo);

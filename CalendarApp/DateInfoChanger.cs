@@ -8,15 +8,15 @@ namespace CalendarApp
         /// <summary>
         /// TableLayoutPanelのインスタンス
         /// </summary>
-        private TableLayoutPanel m_Panel = null;
+        private TableLayoutPanel _panel = null;
         /// <summary>
         /// カレンダーの列数
         /// </summary>
-        int m_columnNum = 0;
+        int _columnNum = 0;
         /// <summary>
         /// カレンダーの行数
         /// </summary>
-        int m_rowNum = 0;
+        int _rowNum = 0;
 
         /// <summary>
         /// コンストラクター
@@ -26,9 +26,9 @@ namespace CalendarApp
         /// <param name="rowNum">カレンダーの行数</param>
         public DateInfoChanger(TableLayoutPanel tableLayoutPanel, int columnNum, int rowNum)
         {
-            m_Panel = tableLayoutPanel;
-            m_columnNum = columnNum;
-            m_rowNum = rowNum;
+            _panel = tableLayoutPanel;
+            _columnNum = columnNum;
+            _rowNum = rowNum;
         }
 
         /// <summary>
@@ -45,12 +45,12 @@ namespace CalendarApp
             DateTime currentDate = firstDate.AddDays(-1 * (int)firstDate.DayOfWeek);
 
             // カレンダー枠に日付を描く
-            for (int rowNo = 0; rowNo < m_rowNum; rowNo++)
+            for (int rowNo = 0; rowNo < _rowNum; rowNo++)
             {
-                for (int colNo = 0; colNo < m_columnNum; colNo++)
+                for (int colNo = 0; colNo < _columnNum; colNo++)
                 {
                     // (x, y)座標にあるコントロール(DayPanelExのはず)を取得
-                    Control ctrl = m_Panel.GetControlFromPosition(colNo, rowNo);
+                    Control ctrl = _panel.GetControlFromPosition(colNo, rowNo);
                     if (ctrl is DayPanelEx)
                     {
                         // 日付文字列の更新
