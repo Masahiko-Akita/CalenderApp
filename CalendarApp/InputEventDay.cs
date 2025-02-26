@@ -1,4 +1,5 @@
 ﻿// InputEnentDay.cs
+using DataContainer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,20 +14,36 @@ namespace CalendarApp
 {
     public partial class InputEventDay : Form
     {
-        public InputEventDay(DateTime m_date)
+        public InputEventDay()
         {
             InitializeComponent();
-
-            ImportStartDay(m_date);
         }
 
-        private void ImportStartDay(DateTime m_date)
+        public void ImportEvent(EventTableData ev)
         {
-            this.txtStartYear.Text   = m_date.Year.ToString();
-            this.txtStartMonth.Text  = m_date.Month.ToString();
-            this.txtStartDay.Text    = m_date.Day.ToString();
-            this.txtStartHour.Text   = m_date.Hour.ToString();
-            this.txtStartMinute.Text = m_date.Minute.ToString();
+            // 開始
+            this.txtStartYear.Text   = ev.StartDateTime.Year.ToString();
+            this.txtStartMonth.Text  = ev.StartDateTime.Month.ToString();
+            this.txtStartDay.Text    = ev.StartDateTime.Day.ToString();
+            this.txtStartHour.Text   = ev.StartDateTime.Hour.ToString();
+            this.txtStartMinute.Text = ev.StartDateTime.Minute.ToString();
+
+            // 終了
+            this.txtStopYear.Text    = ev.EndDateTime.Year.ToString();
+            this.txtStopMonth.Text   = ev.EndDateTime.Month.ToString();
+            this.txtStopDay.Text     = ev.EndDateTime.Day.ToString();
+            this.txtStopHour.Text    = ev.EndDateTime.Hour.ToString();
+            this.txtStopMinute.Text  = ev.EndDateTime.Minute.ToString();
+
+            // 呼び出し元で入るはず
+            this.txtTitle.Text = "タイトル";
+            this.txtPlace.Text = "場所";
+
+            // 終日
+            this.chkAllDay.Checked = true;
+
+            // 内容
+            this.txtContents.Text = "内容ほげらほげら";
         }
 
         private void InputEventDay_Load(object sender, EventArgs e)

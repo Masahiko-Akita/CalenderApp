@@ -169,7 +169,19 @@ namespace CalendarApp
         /// <param name="targetDate"></param>
         public void ShowEventInput(DateTime targetDate)
         {
-            InputEventDay eventDayDlg = new InputEventDay(targetDate);
+            InputEventDay eventDayDlg = new InputEventDay();
+
+            // ToDo: ここで DB に対して
+            // targetDate を元にSQL文を作成/実行
+
+            // 以下みたいなデータが取れたと仮定する
+            DateTime startDate = new DateTime(targetDate.Year, targetDate.Month, targetDate.Day,  9, 12, 34);
+            DateTime endDate   = new DateTime(targetDate.Year, targetDate.Month, targetDate.Day, 12, 34, 56);
+
+            // EventTableDataは修正する必要がある
+            EventTableData ev = new EventTableData(1, 1, 1, startDate, endDate, true);
+            eventDayDlg.ImportEvent(ev);
+
             eventDayDlg.Show();
         }
     }
