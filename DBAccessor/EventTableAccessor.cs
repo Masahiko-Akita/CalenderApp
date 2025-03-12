@@ -1,5 +1,10 @@
-﻿using System;
+﻿// EventTableAccessor.cs
+using DataContainer;
+using System;
 using System.Collections.Generic;
+
+// DBのフィールド名と型名を関連付ける
+using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
 
 namespace DBAccessor
 {
@@ -13,31 +18,34 @@ namespace DBAccessor
         {
         }
 
+        // DBのフィールド名と型名を関連付ける
         // TODO あとでEventTableDataに移動する
-        public override List<string> GetColumnInfo()
+        public override DicColumnInfoType GetColumnInfo()
         {
-            List<string> info = new List<string>();
-            info.Add(EventDataKey.CalendarID);
-            info.Add(EventDataKey.EventID);
-            info.Add(EventDataKey.EventDateID);
-            info.Add(EventDataKey.StartDateTime);
-            info.Add(EventDataKey.EndDateTime);
-            info.Add(EventDataKey.AllDayFlag);
+            DicColumnInfoType info = new DicColumnInfoType();
+            info.Add(EventDataKey.CalendarID, DataType.Types.Integer);
+            info.Add(EventDataKey.EventID, DataType.Types.Integer);
+            info.Add(EventDataKey.EventDateID, DataType.Types.Integer);
+            info.Add(EventDataKey.StartDateTime, DataType.Types.Text);
+            info.Add(EventDataKey.EndDateTime, DataType.Types.Text);
+            info.Add(EventDataKey.AllDayFlag, DataType.Types.Integer);
             return info;
         }
 
         /// <summary>
-        /// イベントデータを取得
+        /// SELECT文を取得
         /// </summary>
-        /// <returns>イベントデータ</returns>
-        public List<Dictionary<string, string>> getEventData(DateTime dateTime)
+        /// <returns>SELECT文</returns>
+        public override string GetSelectSql()
         {
-            DateTime startDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
-            DateTime endDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999);
+            // TODO：WHERE句は仮です
+            // たぶんこうなる　⇒　WHERE 検索日時 >= StartDateTime AND 検索日時 <= EndDateTime
+            return "SELECT * FROM EVENT_DATE WHERE " + EventDataKey.CalendarID + " = 0 AND " + EventDataKey.StartDateTime + " = \"2025-01-20\"";
+        }
 
-            string query = string.Format("SELECT * FROM EVENT_DATE WHERE {0}  = 0 AND {1} >= {2} AND {3} <= {4}",
-                EventDataKey.CalendarID, EventDataKey.StartDateTime, startDateTime, EventDataKey.EndDateTime, endDateTime);
-            return getSelectData(query);
+        public List<string> GetInsertSql(List<Dictionary<string, object>> datas)
+        {
+            return GetInsertSql("EVENT_DATA", datas);
         }
     }
 }

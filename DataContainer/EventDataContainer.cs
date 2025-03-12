@@ -1,19 +1,45 @@
-﻿using DBAccessor;
+﻿// EventDataContainer.cs
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DBAccessor;
+
+// DBのフィールド名と型名を関連付ける
+using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
+
+// DBの1レコードに対応する
+// DBのフィールドとそこに格納されている値をDictionayコンテナで集める。
+// とりあえず string型で取り出す。
+// 後で各型に変換する
+using DicDBRecord = System.Collections.Generic.Dictionary<string, string>;
+
+// Selet文の実行結果は複数レコードで帰ってくるので
+// DicDBRecord をリストで管理したもの
+//  List<DicDBRecord>
+// どうして ↑ で定義した型名 DicDBRecordが書けないのか...ぶつぶつ
+using ListDBResult = System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, string>>;
+
 
 namespace DataContainer
 {
     public class EventDataContainer : AbstractDataContainer<EventTableData>
     {
-        public List<EventTableData> GetEventData(DateTime dateTime)
+        // Select文の結果 <string, string> から
+        // 実際のデータ EventTableData に変換する
+        // 戻り値はSelect文で引っかかった全レコード分のデータ
+        public override List<EventTableData> GetSelectData()
         {
             EventTableAccessor accessor = new EventTableAccessor();
             //return accessor.GetData();
             List<EventTableData> tableData = new List<EventTableData>();
 
-            List<Dictionary<string, string>> datas = accessor.getEventData(dateTime);
-            foreach (Dictionary<string, string> data in datas)
+            // Select文で実行した全レコードデータ。複数の場合がありうる
+            ListDBResult selectResult = accessor.getSelectData();
+
+            // 全レコードの中に対するループ
+            foreach (DicDBRecord aRecord in selectResult)
             {
                 bool enabled = false;
                 int? calendarID = null;
@@ -25,8 +51,10 @@ namespace DataContainer
 
                 try
                 {
-                    foreach (KeyValuePair<string, string> info in data)
+                    // 1レコードの中の各フィールドに対するループ
+                    foreach (KeyValuePair<string, string> info in aRecord)
                     {
+                        // 文字列->型変換
                         switch (info.Key)
                         {
                             case EventDataKey.CalendarID:
@@ -45,7 +73,10 @@ namespace DataContainer
                                 endDateTime = DateTime.Parse(info.Value);
                                 break;
                             case EventDataKey.AllDayFlag:
-                                allDayFlag = Convert.ToBoolean(Int32.Parse(info.Value));
+                                {
+                                    int nVal = int.Parse(info.Value);
+                                    allDayFlag = (nVal == 1) ? true : false;
+                                }
                                 break;
                             default:
                                 // TODO：何かしらの例外処理をする
@@ -54,7 +85,7 @@ namespace DataContainer
                     }
                     enabled = true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // TODO：何らかの例外処理をする
                 }
@@ -70,5 +101,28 @@ namespace DataContainer
             return tableData;
         }
 
+        public override void UpdateContainer()
+        {
+            List<Dictionary<string, object>> insertData = new List<Dictionary<string, object>>();
+            EventTableAccessor accessor = new EventTableAccessor();
+            List<AbstractTableData> datas = GetData();
+            foreach(AbstractTableData data in datas)
+            {
+                if(data is EventTableData){
+                    EventTableData tableData = (EventTableData)data;
+
+                    Dictionary<string, object> dic = new Dictionary<string, object>();
+
+                    dic.Add(EventDataKey.CalendarID, tableData.CalendarID);
+                    dic.Add(EventDataKey.EventID, tableData.EventID);
+                    dic.Add(EventDataKey.StartDateTime, tableData.StartDateTime);
+                    dic.Add(EventDataKey.EndDateTime,tableData.EndDateTime);
+                    dic.Add(EventDataKey.AllDayFlag,tableData.AllDayFlag);
+
+                    insertData.Add(dic);
+                }
+            }
+            accessor.GetInsertSql(insertData);
+        }
     }
 }
