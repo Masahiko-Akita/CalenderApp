@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Reflection;
-using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace CalendarApp
 {
@@ -20,20 +18,9 @@ namespace CalendarApp
         /// </summary>
         private const int CalendarRowNum = 6;
 
-        /// <summary>
-        /// 表示年
-        /// </summary>
-        /// <remarks>
-        /// 初期値は今日
-        /// </remarks>
-        private int _currentYear { get; set; } = DateTime.Now.Year;
-        /// <summary>
-        /// 表示月
-        /// </summary>
-        /// <remarks>
-        /// 初期値は今日
-        /// </remarks>
-        private int _currentMonth { get; set; } = DateTime.Now.Month;
+        // 現在表示中の年と月を覚える
+        private int _curYear  { get; set; }
+        private int _curMonth { get; set; }
 
         public Form1()
         {
@@ -63,7 +50,7 @@ namespace CalendarApp
         private void OnUpdateDay()
         {
             DateInfoChanger changer = new DateInfoChanger(tableLayoutPanelMain, CalendarColumnNum, CalendarRowNum);
-            changer.SetYearMonth(_currentYear, _currentMonth);
+            changer.SetYearMonth(_curYear, _curMonth);
         }
 
         // 初期化全体
@@ -111,25 +98,41 @@ namespace CalendarApp
         // 日付の初期化
         private void InitDate()
         {
+            // 今日
+            DateTime dt = DateTime.Now;
+            _curYear = dt.Year;
+            _curMonth = dt.Month;
+
             // 画面に反映
-            textBoxYear.Text  = _currentYear.ToString();
-            textBoxMonth.Text = _currentMonth.ToString();
+            textBoxYear.Text  = _curYear.ToString();
+            textBoxMonth.Text = _curMonth.ToString();
+
+
+            // TODO  サンプル
+            EventDataContainer container = new EventDataContainer();
+            List<EventTableData> eventDatas = container.GetSelectData();
+            foreach (EventTableData anEventData in eventDatas)
+            {
+                DateTime startDate = anEventData.GetStartDate();
+                MessageBox.Show(startDate.ToString("yyyy/MM/dd"));
+            }
+
         }
 
         // 「前の月」に移動したときのイベントハンドラ
         private void OnClickPrevMonth(object sender, EventArgs e)
         {
-            DateTime dt = new DateTime(_currentYear, _currentMonth, 1);
+            DateTime dt = new DateTime(_curYear, _curMonth, 1);
 
             // 一か月減算
             dt = dt.AddMonths(-1);
 
-            _currentYear = dt.Year;
-            _currentMonth = dt.Month;
+            _curYear = dt.Year;
+            _curMonth = dt.Month;
 
             // 画面に反映
-            textBoxYear.Text  = _currentYear.ToString();
-            textBoxMonth.Text = _currentMonth.ToString();
+            textBoxYear.Text  = _curYear.ToString();
+            textBoxMonth.Text = _curMonth.ToString();
 
             // カレンダーの更新
             OnUpdateDay();
@@ -138,17 +141,17 @@ namespace CalendarApp
         // 「次の月」に移動した時のイベントハンドラ
         private void OnClickNextMonth(object sender, EventArgs e)
         {
-            DateTime dt = new DateTime(_currentYear, _currentMonth, 1);
+            DateTime dt = new DateTime(_curYear, _curMonth, 1);
 
             // 一か月加算
             dt = dt.AddMonths(1);
 
-            _currentYear  = dt.Year;
-            _currentMonth = dt.Month;
+            _curYear  = dt.Year;
+            _curMonth = dt.Month;
 
             // 画面に反映
-            textBoxYear.Text  = _currentYear.ToString();
-            textBoxMonth.Text = _currentMonth.ToString();
+            textBoxYear.Text  = _curYear.ToString();
+            textBoxMonth.Text = _curMonth.ToString();
 
             // カレンダーの更新
             OnUpdateDay();
@@ -161,28 +164,6 @@ namespace CalendarApp
 
             // カレンダーの更新
             OnUpdateDay();
-        }
-
-        /// <summary>
-        /// イベント入力画面を表示
-        /// </summary>
-        /// <param name="targetDate"></param>
-        public void ShowEventInput(DateTime targetDate)
-        {
-            InputEventDay eventDayDlg = new InputEventDay();
-
-            // ToDo: ここで DB に対して
-            // targetDate を元にSQL文を作成/実行
-
-            // 以下みたいなデータが取れたと仮定する
-            DateTime startDate = new DateTime(targetDate.Year, targetDate.Month, targetDate.Day,  9, 12, 34);
-            DateTime endDate   = new DateTime(targetDate.Year, targetDate.Month, targetDate.Day, 12, 34, 56);
-
-            // EventTableDataは修正する必要がある
-            EventTableData ev = new EventTableData(1, 1, 1, startDate, endDate, true);
-            eventDayDlg.ImportEvent(ev);
-
-            eventDayDlg.Show();
         }
     }
 }
