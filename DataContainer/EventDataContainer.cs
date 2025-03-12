@@ -44,7 +44,6 @@ namespace DataContainer
                 bool enabled = false;
                 int? calendarID = null;
                 int? eventID = null;
-                int? eventDateID = null;
                 DateTime startDateTime = new DateTime();
                 DateTime endDateTime = new DateTime();
                 bool allDayFlag = false;
@@ -63,9 +62,6 @@ namespace DataContainer
                             case EventDataKey.EventID:
                                 eventID = Int32.Parse(info.Value);
                                 break;
-                            case EventDataKey.EventDateID:
-                                eventDateID = Int32.Parse(info.Value);
-                                break;
                             case EventDataKey.StartDateTime:
                                 startDateTime = DateTime.Parse(info.Value);
                                 break;
@@ -74,8 +70,16 @@ namespace DataContainer
                                 break;
                             case EventDataKey.AllDayFlag:
                                 {
-                                    int nVal = int.Parse(info.Value);
-                                    allDayFlag = (nVal == 1) ? true : false;
+                                    int nVal;
+                                    bool result = int.TryParse(info.Value, out nVal);
+                                    if (result)
+                                    {
+                                        allDayFlag = (nVal == 1) ? true : false;
+                                    }
+                                    else
+                                    {
+                                        allDayFlag = false;
+                                    }
                                 }
                                 break;
                             default:
@@ -88,12 +92,13 @@ namespace DataContainer
                 catch (Exception)
                 {
                     // TODO：何らかの例外処理をする
+                    int a = 0;
                 }
 
                 // データの変換に成功した
                 if (enabled)
                 {
-                    EventTableData table = new EventTableData(calendarID, eventID, eventDateID, startDateTime, endDateTime, allDayFlag);
+                    EventTableData table = new EventTableData(calendarID, eventID, startDateTime, endDateTime, allDayFlag);
                     tableData.Add(table);
                 }
             }

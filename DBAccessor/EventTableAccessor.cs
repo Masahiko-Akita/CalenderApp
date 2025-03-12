@@ -25,7 +25,6 @@ namespace DBAccessor
             DicColumnInfoType info = new DicColumnInfoType();
             info.Add(EventDataKey.CalendarID, DataType.Types.Integer);
             info.Add(EventDataKey.EventID, DataType.Types.Integer);
-            info.Add(EventDataKey.EventDateID, DataType.Types.Integer);
             info.Add(EventDataKey.StartDateTime, DataType.Types.Text);
             info.Add(EventDataKey.EndDateTime, DataType.Types.Text);
             info.Add(EventDataKey.AllDayFlag, DataType.Types.Integer);
@@ -40,7 +39,7 @@ namespace DBAccessor
         {
             // TODO：WHERE句は仮です
             // たぶんこうなる　⇒　WHERE 検索日時 >= StartDateTime AND 検索日時 <= EndDateTime
-            return "SELECT * FROM EVENT_DATE WHERE " + EventDataKey.CalendarID + " = 0 AND " + EventDataKey.StartDateTime + " = \"2025-01-20\"";
+            return "SELECT * FROM EVENT WHERE " + EventDataKey.CalendarID + " = 0 AND " + EventDataKey.StartDateTime + " = \"2025-01-20\"";
         }
 
         public List<string> GetInsertSql(List<Dictionary<string, object>> datas)

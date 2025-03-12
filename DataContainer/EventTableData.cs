@@ -8,7 +8,6 @@ namespace DataContainer
     {
         public int? CalendarID = null;
         public int? EventID = null;
-        public int? EventDataID = null;
         public DateTime StartDateTime = new DateTime();
         public DateTime EndDateTime = new DateTime();
         public bool AllDayFlag = false;
@@ -17,11 +16,10 @@ namespace DataContainer
         {
         }
 
-        public EventTableData(int? calendarID, int? eventID, int? eventDataID, DateTime startDateTime, DateTime endDateTime, bool allDayFlag)
+        public EventTableData(int? calendarID, int? eventID, DateTime startDateTime, DateTime endDateTime, bool allDayFlag)
         {
             CalendarID = calendarID;
             EventID = eventID;
-            EventDataID = eventDataID;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
             AllDayFlag = allDayFlag;
