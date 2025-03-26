@@ -25,7 +25,12 @@ namespace CalendarApp
             labelDay.AutoSize = true;
             labelDay.ForeColor = Color.Black;
 
+            // このPanelをシングルクリックしたときのイベントハンドラの追加
+            // 画面下部分にイベントを表示
+            this.Click += new EventHandler(OnClick);
+
             // このPanelをダブルクリックしたときのイベントハンドラの追加
+            // イベント入力画面を出す
             this.DoubleClick += new EventHandler(OnDoubleClick);
 
             // このパネル(コントロール)にラベルを追加する
@@ -58,14 +63,26 @@ namespace CalendarApp
         }
 
         /// <summary>
+        /// シングルクリックされたときのイベントハンドラ
+        /// </summary>
+        /// <param name="sender">イベントを発生させたオブジェクト</param>
+        /// <param name="e">イベントデータを含むEventArgsオブジェクト</param>
+        public void OnClick(Object sender, EventArgs e)
+        {
+            // シングルトンインスタンスを取得
+            EventLabelEx labelEx = EventLabelEx.Instance;
+            List<int> a = new List<int>{ 1, 2, 3 };
+            labelEx.SetEventIDs(a);
+        }
+
+        /// <summary>
         /// ダブルクリックされたときのイベントハンドラ
         /// </summary>
         /// <param name="sender">イベントを発生させたオブジェクト</param>
         /// <param name="e">イベントデータを含むEventArgsオブジェクト</param>
         public void OnDoubleClick(Object sender, EventArgs e)
         {
-            // ToDo イベント入力画面
-            //MessageBox.Show(m_date.ToString("yyyy/MM/dd") + " ToDo:イベント入力画面に飛びたい");
+            // イベント入力画面を表示する
             InputEventDay test = new InputEventDay(m_date);
             test.Show();
         }

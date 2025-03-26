@@ -65,6 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventLabelEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="InputEventDay.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -107,7 +107,6 @@ namespace CalendarApp
             textBoxYear.Text  = _curYear.ToString();
             textBoxMonth.Text = _curMonth.ToString();
 
-
             // TODO  サンプル
             EventDataContainer container = new EventDataContainer();
             List<EventTableData> eventDatas = container.GetSelectData();
