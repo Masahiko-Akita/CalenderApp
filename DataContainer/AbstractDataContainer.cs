@@ -11,7 +11,8 @@ namespace DataContainer
     public abstract class AbstractDataContainer<T>
     {
         private List<AbstractTableData> m_datas;
-        public abstract List<T> GetSelectData();
+
+        public abstract List<T> GetSelectData(DateTime dateTime);
 
         public void AddData(List<AbstractTableData> datas)
         {

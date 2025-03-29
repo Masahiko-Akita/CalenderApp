@@ -166,7 +166,7 @@ namespace CalendarApp
 
             // ここで DB に対して targetDate を元にSQL文を作成/実行
             EventDataContainer container = new EventDataContainer();
-            List<EventTableData> eventDatas = container.GetSelectData();
+            List<EventTableData> eventDatas = container.GetSelectData(targetDate);
 
             // ToDo とりあえず最初のイベント
             EventTableData ev = eventDatas[0];

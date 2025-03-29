@@ -34,8 +34,6 @@ namespace DBAccessor
         // DBのフィールド名と型名
         public abstract DicColumnInfoType GetColumnInfo();
 
-        public abstract string GetSelectSql();
-
         protected List<string> GetInsertSql(string tableName,List<Dictionary<string, object>> datas)
         {
             List<string> sql = new List<string>();
@@ -55,31 +53,13 @@ namespace DBAccessor
             return sql;
         }
 
-
-        /// <summary>
-        /// データ抽出
-        /// </summary>
-        protected void SelectData()
-        {
-            m_selectData.Clear();
-
-            string query = GetSelectSql();
-            // 欲しいフィールドの情報
-            DicColumnInfoType columnInfo = GetColumnInfo();
-
-            SqlExecutor executor = new SqlExecutor();
-            m_selectData = executor.Read(query, columnInfo);
-        }
-
         /// <summary>
         /// 抽出したデータを取得
         /// </summary>
         /// <returns>抽出したデータ</returns>
-        public ListDBResult getSelectData()
+        public ListDBResult getSelectData(string query)
         {
             m_selectData.Clear();
-
-            string query = GetSelectSql();
 
             // 欲しいフィールドの情報
             DicColumnInfoType columnInfo = GetColumnInfo();

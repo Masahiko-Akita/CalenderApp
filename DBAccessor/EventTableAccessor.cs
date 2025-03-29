@@ -40,8 +40,13 @@ namespace DBAccessor
             DateTime startDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
             DateTime endDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999);
 
+            string strStart = startDateTime.ToString("yyyy/MM/dd HH:mm:ss");
+            string strEnd   = endDateTime.ToString("yyyy/MM/dd HH:mm:ss"); ;
+
             string query = string.Format("SELECT * FROM EVENT WHERE {0} = 0 AND {1} >= '{2}' AND {3} <= '{4}'",
-                EventDataKey.CalendarID, EventDataKey.StartDateTime, startDateTime, EventDataKey.EndDateTime, endDateTime);
+                EventDataKey.CalendarID,
+                EventDataKey.StartDateTime, strStart,
+                EventDataKey.EndDateTime, strEnd);
 
             return getSelectData(query);
         }

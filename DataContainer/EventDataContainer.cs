@@ -29,14 +29,14 @@ namespace DataContainer
         // Select文の結果 <string, string> から
         // 実際のデータ EventTableData に変換する
         // 戻り値はSelect文で引っかかった全レコード分のデータ
-        public override List<EventTableData> GetSelectData()
+        public override List<EventTableData> GetSelectData(DateTime dateTime)
         {
             EventTableAccessor accessor = new EventTableAccessor();
             //return accessor.GetData();
             List<EventTableData> tableData = new List<EventTableData>();
 
             // Select文で実行した全レコードデータ。複数の場合がありうる
-            ListDBResult selectResult = accessor.getSelectData();
+            ListDBResult selectResult = accessor.getEventData(dateTime);
 
             // 全レコードの中に対するループ
             foreach (DicDBRecord aRecord in selectResult)
