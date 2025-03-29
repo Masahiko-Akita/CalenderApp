@@ -106,16 +106,6 @@ namespace CalendarApp
             // 画面に反映
             textBoxYear.Text  = _curYear.ToString();
             textBoxMonth.Text = _curMonth.ToString();
-
-            // TODO  サンプル
-            EventDataContainer container = new EventDataContainer();
-            List<EventTableData> eventDatas = container.GetSelectData();
-            foreach (EventTableData anEventData in eventDatas)
-            {
-                DateTime startDate = anEventData.GetStartDate();
-                MessageBox.Show(startDate.ToString("yyyy/MM/dd"));
-            }
-
         }
 
         // 「前の月」に移動したときのイベントハンドラ
@@ -163,6 +153,26 @@ namespace CalendarApp
 
             // カレンダーの更新
             OnUpdateDay();
+        }
+
+        /// <summary>
+        /// イベント入力画面を表示
+        /// </summary>
+        /// <param name="targetDate"></param>
+        public void ShowEventInput(DateTime targetDate)
+        {
+            // イベント入力ダイアログ
+            InputEventDay eventDayDlg = new InputEventDay();
+
+            // ここで DB に対して targetDate を元にSQL文を作成/実行
+            EventDataContainer container = new EventDataContainer();
+            List<EventTableData> eventDatas = container.GetSelectData();
+
+            // ToDo とりあえず最初のイベント
+            EventTableData ev = eventDatas[0];
+            eventDayDlg.ImportEvent(ev);
+
+            eventDayDlg.Show();
         }
     }
 }

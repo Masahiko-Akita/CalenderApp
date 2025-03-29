@@ -43,10 +43,8 @@ namespace CalendarApp
         /// <param name="nTarget"></param>
         /// <param name="date">日付</param>
         /// <remarks>日付を文字列に変換し保持する</remarks>
-        public void SetDate(int nTarget, DateTime date)
+        public void SetDate(DateTime date)
         {
-            // TODO nTargetは何に使う？
-
             // メンバ変数に保存
             m_date = date;
 
@@ -82,9 +80,12 @@ namespace CalendarApp
         /// <param name="e">イベントデータを含むEventArgsオブジェクト</param>
         public void OnDoubleClick(Object sender, EventArgs e)
         {
-            // イベント入力画面を表示する
-            InputEventDay test = new InputEventDay(m_date);
-            test.Show();
+            Form form = this.FindForm();
+            if (form is Form1 mainForm)
+            {
+                // イベント入力画面を表示
+                mainForm.ShowEventInput(m_date);
+            }
         }
     }
 }

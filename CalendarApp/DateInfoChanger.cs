@@ -56,7 +56,7 @@ namespace CalendarApp
                     {
                         // 日付文字列の更新
                         DayPanelEx curPanel = (DayPanelEx)ctrl;
-                        curPanel.SetDate(0, currentDate);
+                        curPanel.SetDate(currentDate);
 
                         // 日付をインクリメントする
                         currentDate = currentDate.AddDays(1);

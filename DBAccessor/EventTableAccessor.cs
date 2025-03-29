@@ -32,14 +32,18 @@ namespace DBAccessor
         }
 
         /// <summary>
-        /// SELECT文を取得
+        /// イベントデータを取得
         /// </summary>
-        /// <returns>SELECT文</returns>
-        public override string GetSelectSql()
+        /// <returns>イベントデータ</returns>
+        public List<Dictionary<string, string>> getEventData(DateTime dateTime)
         {
-            // TODO：WHERE句は仮です
-            // たぶんこうなる　⇒　WHERE 検索日時 >= StartDateTime AND 検索日時 <= EndDateTime
-            return "SELECT * FROM EVENT WHERE " + EventDataKey.CalendarID + " = 0 AND " + EventDataKey.StartDateTime + " = \"2025-01-20\"";
+            DateTime startDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            DateTime endDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999);
+
+            string query = string.Format("SELECT * FROM EVENT WHERE {0} = 0 AND {1} >= '{2}' AND {3} <= '{4}'",
+                EventDataKey.CalendarID, EventDataKey.StartDateTime, startDateTime, EventDataKey.EndDateTime, endDateTime);
+
+            return getSelectData(query);
         }
 
         public List<string> GetInsertSql(List<Dictionary<string, object>> datas)

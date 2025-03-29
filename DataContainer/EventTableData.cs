@@ -16,6 +16,14 @@ namespace DataContainer
         {
         }
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="calendarID">カレンダーID</param>
+        /// <param name="eventID">イベントID</param>
+        /// <param name="startDateTime">開始日時</param>
+        /// <param name="endDateTime">終了日時</param>
+        /// <param name="allDayFlag">全日フラグ</param>
         public EventTableData(int? calendarID, int? eventID, DateTime startDateTime, DateTime endDateTime, bool allDayFlag)
         {
             CalendarID = calendarID;
