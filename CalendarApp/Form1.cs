@@ -162,17 +162,23 @@ namespace CalendarApp
         public void ShowEventInput(DateTime targetDate)
         {
             // イベント入力ダイアログ
-            InputEventDay eventDayDlg = new InputEventDay();
+            InputEventDay eventDayDlg = new InputEventDay(targetDate);
+            eventDayDlg.Show();
+        }
 
+        /// <summary>
+        /// ラベルにイベントを表示する
+        /// </summary>
+        /// <param name="targetDate"></param>
+        public void UpdateLabel(DateTime targetDate)
+        {
             // ここで DB に対して targetDate を元にSQL文を作成/実行
             EventDataContainer container = new EventDataContainer();
             List<EventTableData> eventDatas = container.GetSelectData(targetDate);
 
-            // ToDo とりあえず最初のイベント
+            // ToDo for文で回す
             EventTableData ev = eventDatas[0];
-            eventDayDlg.ImportEvent(ev);
 
-            eventDayDlg.Show();
         }
     }
 }

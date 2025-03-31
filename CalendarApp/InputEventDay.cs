@@ -13,27 +13,23 @@ namespace CalendarApp
 {
     public partial class InputEventDay : Form
     {
-        public InputEventDay()
+        public InputEventDay(DateTime date)
         {
             InitializeComponent();
-        }
 
-        public void ImportEvent(EventTableData ev)
-        {
             // 開始
-            this.txtStartYear.Text = ev.StartDateTime.Year.ToString();
-            this.txtStartMonth.Text = ev.StartDateTime.Month.ToString();
-            this.txtStartDay.Text = ev.StartDateTime.Day.ToString();
-            this.txtStartHour.Text = ev.StartDateTime.Hour.ToString();
-            this.txtStartMinute.Text = ev.StartDateTime.Minute.ToString();
+            this.txtStartYear.Text  = date.Year.ToString();
+            this.txtStartMonth.Text = date.Month.ToString();
+            this.txtStartDay.Text   = date.Day.ToString();
 
             // 終了
-            this.txtStopYear.Text = ev.EndDateTime.Year.ToString();
-            this.txtStopMonth.Text = ev.EndDateTime.Month.ToString();
-            this.txtStopDay.Text = ev.EndDateTime.Day.ToString();
-            this.txtStopHour.Text = ev.EndDateTime.Hour.ToString();
-            this.txtStopMinute.Text = ev.EndDateTime.Minute.ToString();
+            this.txtStopYear.Text  = date.Year.ToString();
+            this.txtStopMonth.Text = date.Month.ToString();
+            this.txtStopDay.Text   = date.Day.ToString();
+        }
 
+        public void ImportEvent()
+        {
             // 呼び出し元で入るはず
             this.txtTitle.Text = "タイトル";
             this.txtPlace.Text = "場所";

@@ -11,6 +11,8 @@ namespace CalendarApp
     {
         // データベースに渡すため表示中の日付を保持しておく
         DateTime m_date;    // TODO メンバー変数として持っておく必要があるかは要検討
+        private Timer clickTimer;
+        private bool isDoubleClick = false;
 
         /// <summary>
         /// コンストラクター
@@ -25,6 +27,10 @@ namespace CalendarApp
             labelDay.AutoSize = true;
             labelDay.ForeColor = Color.Black;
 
+            clickTimer = new Timer();
+            clickTimer.Interval = SystemInformation.DoubleClickTime;
+            clickTimer.Tick += ClickTimer_Tick;
+
             // このPanelをシングルクリックしたときのイベントハンドラの追加
             // 画面下部分にイベントを表示
             this.Click += new EventHandler(OnClick);
@@ -35,6 +41,26 @@ namespace CalendarApp
 
             // このパネル(コントロール)にラベルを追加する
             this.Controls.Add(labelDay);
+        }
+
+        private void ClickTimer_Tick(object sender, EventArgs e)
+        {
+            clickTimer.Stop();
+            Form form = this.FindForm();
+            if (form is Form1 mainForm)
+            {
+                if (isDoubleClick)
+                {
+                    // ダブルクリック
+                    // イベント入力画面を表示
+                    mainForm.ShowEventInput(m_date);
+                } else
+                {
+                    // シングルクリック
+                    // ラベルを更新
+                    mainForm.UpdateLabel(m_date);
+                }
+            }
         }
 
         /// <summary>
@@ -67,10 +93,8 @@ namespace CalendarApp
         /// <param name="e">イベントデータを含むEventArgsオブジェクト</param>
         public void OnClick(Object sender, EventArgs e)
         {
-            // シングルトンインスタンスを取得
-            EventLabelEx labelEx = EventLabelEx.Instance;
-            List<int> a = new List<int>{ 1, 2, 3 };
-            labelEx.SetEventIDs(a);
+            isDoubleClick = false;
+            clickTimer.Start();
         }
 
         /// <summary>
@@ -80,12 +104,7 @@ namespace CalendarApp
         /// <param name="e">イベントデータを含むEventArgsオブジェクト</param>
         public void OnDoubleClick(Object sender, EventArgs e)
         {
-            Form form = this.FindForm();
-            if (form is Form1 mainForm)
-            {
-                // イベント入力画面を表示
-                mainForm.ShowEventInput(m_date);
-            }
+            isDoubleClick = true;
         }
     }
 }
