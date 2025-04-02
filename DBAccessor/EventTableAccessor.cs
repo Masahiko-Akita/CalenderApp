@@ -38,7 +38,7 @@ namespace DBAccessor
         public List<Dictionary<string, string>> getEventData(DateTime dateTime)
         {
             DateTime startDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
-            DateTime endDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999);
+            DateTime endDateTime   = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999);
 
             string strStart = startDateTime.ToString("yyyy/MM/dd HH:mm:ss");
             string strEnd   = endDateTime.ToString("yyyy/MM/dd HH:mm:ss"); ;
@@ -53,7 +53,7 @@ namespace DBAccessor
 
         public List<string> GetInsertSql(List<Dictionary<string, object>> datas)
         {
-            return GetInsertSql("EVENT_DATA", datas);
+            return GetInsertSql("EVENT", datas);
         }
     }
 }

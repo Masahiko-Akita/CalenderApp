@@ -34,7 +34,7 @@ namespace DBAccessor
         // DBのフィールド名と型名
         public abstract DicColumnInfoType GetColumnInfo();
 
-        protected List<string> GetInsertSql(string tableName,List<Dictionary<string, object>> datas)
+        protected List<string> GetInsertSql(string tableName, List<Dictionary<string, object>> datas)
         {
             List<string> sql = new List<string>();
 

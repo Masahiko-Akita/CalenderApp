@@ -45,7 +45,19 @@ namespace CalendarApp
         {
 
         }
+        // 保存
+        private void btnSave_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        // 削除
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // キャンセル
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
