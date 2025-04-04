@@ -172,7 +172,7 @@ namespace CalendarApp
         /// <param name="targetDate"></param>
         public void UpdateLabel(DateTime targetDate)
         {
-            // ここで DB に対して targetDate を元にSQL文を作成/実行
+            // ここで DB に対して targetDate を元に SQL Select 文を作成/実行
             EventDataContainer container = new EventDataContainer();
             List<EventTableData> eventDatas = container.GetSelectData(targetDate);
 

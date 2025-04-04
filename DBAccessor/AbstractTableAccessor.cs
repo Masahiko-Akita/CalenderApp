@@ -34,22 +34,16 @@ namespace DBAccessor
         // DBのフィールド名と型名
         public abstract DicColumnInfoType GetColumnInfo();
 
-        protected List<string> GetInsertSql(string tableName, List<Dictionary<string, object>> datas)
+        protected string GetInsertSql(string tableName, Dictionary<string, object> data)
         {
-            List<string> sql = new List<string>();
+            // カラム名をコンマ区切りで取得
+            string columns = string.Join(", ", data.Keys);
 
-            foreach (Dictionary<string, object> data in datas)
-            {
-                // カラム名をコンマ区切りで取得
-                string columns = string.Join(", ", data.Keys);
+            // 値をシングルクォートで囲み、コンマ区切りで取得
+            string values = string.Join(", ", data.Values);
 
-                // 値をシングルクォートで囲み、コンマ区切りで取得
-                string values = string.Join(", ", data.Values);
-
-                // SQL文を構築
-                sql.Add($"INSERT INTO {tableName} ({columns}) VALUES ({values});");
-            }
-
+            // SQL文を構築
+            string sql = $"INSERT INTO {tableName} ({columns}) VALUES ({values});";
             return sql;
         }
 

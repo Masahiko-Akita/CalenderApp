@@ -18,11 +18,12 @@ namespace DataContainer
         {
             m_datas = datas;
         }
+
         protected List<AbstractTableData> GetData()
         {
             return m_datas;
         }
 
-        public abstract void UpdateContainer();
+        // public abstract void UpdateContainer(AbstractTableData data);
     }
 }

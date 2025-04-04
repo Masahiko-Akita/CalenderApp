@@ -106,28 +106,23 @@ namespace DataContainer
             return tableData;
         }
 
-        public override void UpdateContainer()
+        public void UpdateContainer(EventTableData inputEvent)
         {
-            List<Dictionary<string, object>> insertData = new List<Dictionary<string, object>>();
             EventTableAccessor accessor = new EventTableAccessor();
-            List<AbstractTableData> datas = GetData();
-            foreach(AbstractTableData data in datas)
-            {
-                if(data is EventTableData){
-                    EventTableData tableData = (EventTableData)data;
 
-                    Dictionary<string, object> dic = new Dictionary<string, object>();
+            // イベント入力画面で得られた情報を
+            Dictionary<string, object> dic = new Dictionary<string, object>();
 
-                    dic.Add(EventDataKey.CalendarID, tableData.CalendarID);
-                    dic.Add(EventDataKey.EventID, tableData.EventID);
-                    dic.Add(EventDataKey.StartDateTime, tableData.StartDateTime);
-                    dic.Add(EventDataKey.EndDateTime,tableData.EndDateTime);
-                    dic.Add(EventDataKey.AllDayFlag,tableData.AllDayFlag);
+            dic.Add(EventDataKey.CalendarID, inputEvent.CalendarID);
+            dic.Add(EventDataKey.EventID, inputEvent.EventID);
+            dic.Add(EventDataKey.StartDateTime, inputEvent.StartDateTime);
+            dic.Add(EventDataKey.EndDateTime, inputEvent.EndDateTime);
+            dic.Add(EventDataKey.AllDayFlag, inputEvent.AllDayFlag);
 
-                    insertData.Add(dic);
-                }
-            }
-            accessor.GetInsertSql(insertData);
+            // insert文の取得
+            string strInserSql = accessor.GetInsertSql(dic);
+
+            // ToDo: insert文の実行
         }
     }
 }

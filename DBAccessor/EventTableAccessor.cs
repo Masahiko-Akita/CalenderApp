@@ -51,9 +51,9 @@ namespace DBAccessor
             return getSelectData(query);
         }
 
-        public List<string> GetInsertSql(List<Dictionary<string, object>> datas)
+        public string GetInsertSql(Dictionary<string, object> data)
         {
-            return GetInsertSql("EVENT", datas);
+            return base.GetInsertSql("EVENT", data);
         }
     }
 }
