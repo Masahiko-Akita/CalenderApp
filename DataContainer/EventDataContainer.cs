@@ -44,6 +44,9 @@ namespace DataContainer
                 bool enabled = false;
                 int? calendarID = null;
                 int? eventID = null;
+                string title = String.Empty;
+                string location = String.Empty;
+                string note = String.Empty;
                 DateTime startDateTime = new DateTime();
                 DateTime endDateTime = new DateTime();
                 bool allDayFlag = false;
@@ -62,6 +65,17 @@ namespace DataContainer
                             case EventDataKey.EventID:
                                 eventID = Int32.Parse(info.Value);
                                 break;
+
+                            case EventDataKey.Title:
+                                title =info.Value;
+                                break;
+                            case EventDataKey.Location:
+                                location = info.Value;
+                                break;
+                            case EventDataKey.Note:
+                                note = info.Value;
+                                break;
+
                             case EventDataKey.StartDateTime:
                                 startDateTime = DateTime.Parse(info.Value);
                                 break;
@@ -98,7 +112,9 @@ namespace DataContainer
                 // データの変換に成功した
                 if (enabled)
                 {
-                    EventTableData table = new EventTableData(calendarID, eventID, startDateTime, endDateTime, allDayFlag);
+                    EventTableData table = new EventTableData(calendarID, eventID,
+                        title, location, note,
+                        startDateTime, endDateTime, allDayFlag);
                     tableData.Add(table);
                 }
             }
@@ -106,23 +122,28 @@ namespace DataContainer
             return tableData;
         }
 
-        public void UpdateContainer(EventTableData inputEvent)
+        public int InsetEvent(EventTableData inputEvent)
         {
             EventTableAccessor accessor = new EventTableAccessor();
 
-            // イベント入力画面で得られた情報を
+            // イベント入力画面で得られた情報を Dictionary に詰める
             Dictionary<string, object> dic = new Dictionary<string, object>();
 
             dic.Add(EventDataKey.CalendarID, inputEvent.CalendarID);
-            dic.Add(EventDataKey.EventID, inputEvent.EventID);
-            dic.Add(EventDataKey.StartDateTime, inputEvent.StartDateTime);
-            dic.Add(EventDataKey.EndDateTime, inputEvent.EndDateTime);
-            dic.Add(EventDataKey.AllDayFlag, inputEvent.AllDayFlag);
+
+            dic.Add(EventDataKey.Title,    "'" + inputEvent.Title + "'");
+            dic.Add(EventDataKey.Location, "'" + inputEvent.Location + "'");
+            dic.Add(EventDataKey.Note,     "'" + inputEvent.Note + "'");
+
+            dic.Add(EventDataKey.StartDateTime, "'"+ inputEvent.StartDateTime + "'");
+            dic.Add(EventDataKey.EndDateTime, "'" + inputEvent.EndDateTime + "'" );
+            dic.Add(EventDataKey.AllDayFlag, inputEvent.AllDayFlag ? 1 : 0);
 
             // insert文の取得
             string strInserSql = accessor.GetInsertSql(dic);
 
-            // ToDo: insert文の実行
+            // Insert文の実行
+            return accessor.InsertData(strInserSql);
         }
     }
 }

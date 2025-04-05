@@ -44,29 +44,29 @@ namespace CalendarApp
             this.label6 = new System.Windows.Forms.Label();
             this.txtStartHour = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtStopMinute = new System.Windows.Forms.TextBox();
+            this.txtEndMinute = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtStopHour = new System.Windows.Forms.TextBox();
+            this.txtEndHour = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtStopDay = new System.Windows.Forms.TextBox();
+            this.txtEndDay = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtStopMonth = new System.Windows.Forms.TextBox();
+            this.txtEndMonth = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtStopYear = new System.Windows.Forms.TextBox();
+            this.txtEndYear = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtPlace = new System.Windows.Forms.TextBox();
+            this.txtLocatin = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.chkAllDay = new System.Windows.Forms.CheckBox();
-            this.txtContents = new System.Windows.Forms.TextBox();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(412, 570);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 38);
             this.btnSave.TabIndex = 0;
@@ -87,7 +87,7 @@ namespace CalendarApp
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(553, 570);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(133, 38);
             this.btnDelete.TabIndex = 2;
@@ -98,7 +98,7 @@ namespace CalendarApp
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(695, 570);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(133, 38);
             this.btnCancel.TabIndex = 3;
@@ -109,7 +109,7 @@ namespace CalendarApp
             // txtStartYear
             // 
             this.txtStartYear.Location = new System.Drawing.Point(127, 44);
-            this.txtStartYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStartYear.Margin = new System.Windows.Forms.Padding(4);
             this.txtStartYear.Name = "txtStartYear";
             this.txtStartYear.Size = new System.Drawing.Size(95, 22);
             this.txtStartYear.TabIndex = 4;
@@ -117,7 +117,7 @@ namespace CalendarApp
             // txtStartMonth
             // 
             this.txtStartMonth.Location = new System.Drawing.Point(279, 44);
-            this.txtStartMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStartMonth.Margin = new System.Windows.Forms.Padding(4);
             this.txtStartMonth.Name = "txtStartMonth";
             this.txtStartMonth.Size = new System.Drawing.Size(68, 22);
             this.txtStartMonth.TabIndex = 6;
@@ -155,7 +155,7 @@ namespace CalendarApp
             // txtStartDay
             // 
             this.txtStartDay.Location = new System.Drawing.Point(404, 44);
-            this.txtStartDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStartDay.Margin = new System.Windows.Forms.Padding(4);
             this.txtStartDay.Name = "txtStartDay";
             this.txtStartDay.Size = new System.Drawing.Size(68, 22);
             this.txtStartDay.TabIndex = 8;
@@ -173,7 +173,7 @@ namespace CalendarApp
             // txtStartMinute
             // 
             this.txtStartMinute.Location = new System.Drawing.Point(728, 44);
-            this.txtStartMinute.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStartMinute.Margin = new System.Windows.Forms.Padding(4);
             this.txtStartMinute.Name = "txtStartMinute";
             this.txtStartMinute.Size = new System.Drawing.Size(68, 22);
             this.txtStartMinute.TabIndex = 12;
@@ -191,7 +191,7 @@ namespace CalendarApp
             // txtStartHour
             // 
             this.txtStartHour.Location = new System.Drawing.Point(603, 44);
-            this.txtStartHour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStartHour.Margin = new System.Windows.Forms.Padding(4);
             this.txtStartHour.Name = "txtStartHour";
             this.txtStartHour.Size = new System.Drawing.Size(68, 22);
             this.txtStartHour.TabIndex = 10;
@@ -206,13 +206,13 @@ namespace CalendarApp
             this.label7.TabIndex = 24;
             this.label7.Text = "分";
             // 
-            // txtStopMinute
+            // txtEndMinute
             // 
-            this.txtStopMinute.Location = new System.Drawing.Point(728, 95);
-            this.txtStopMinute.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtStopMinute.Name = "txtStopMinute";
-            this.txtStopMinute.Size = new System.Drawing.Size(68, 22);
-            this.txtStopMinute.TabIndex = 23;
+            this.txtEndMinute.Location = new System.Drawing.Point(728, 95);
+            this.txtEndMinute.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEndMinute.Name = "txtEndMinute";
+            this.txtEndMinute.Size = new System.Drawing.Size(68, 22);
+            this.txtEndMinute.TabIndex = 23;
             // 
             // label8
             // 
@@ -224,13 +224,13 @@ namespace CalendarApp
             this.label8.TabIndex = 22;
             this.label8.Text = "時";
             // 
-            // txtStopHour
+            // txtEndHour
             // 
-            this.txtStopHour.Location = new System.Drawing.Point(603, 95);
-            this.txtStopHour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtStopHour.Name = "txtStopHour";
-            this.txtStopHour.Size = new System.Drawing.Size(68, 22);
-            this.txtStopHour.TabIndex = 21;
+            this.txtEndHour.Location = new System.Drawing.Point(603, 95);
+            this.txtEndHour.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEndHour.Name = "txtEndHour";
+            this.txtEndHour.Size = new System.Drawing.Size(68, 22);
+            this.txtEndHour.TabIndex = 21;
             // 
             // label9
             // 
@@ -242,13 +242,13 @@ namespace CalendarApp
             this.label9.TabIndex = 20;
             this.label9.Text = "日";
             // 
-            // txtStopDay
+            // txtEndDay
             // 
-            this.txtStopDay.Location = new System.Drawing.Point(404, 95);
-            this.txtStopDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtStopDay.Name = "txtStopDay";
-            this.txtStopDay.Size = new System.Drawing.Size(68, 22);
-            this.txtStopDay.TabIndex = 19;
+            this.txtEndDay.Location = new System.Drawing.Point(404, 95);
+            this.txtEndDay.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEndDay.Name = "txtEndDay";
+            this.txtEndDay.Size = new System.Drawing.Size(68, 22);
+            this.txtEndDay.TabIndex = 19;
             // 
             // label10
             // 
@@ -260,13 +260,13 @@ namespace CalendarApp
             this.label10.TabIndex = 18;
             this.label10.Text = "月";
             // 
-            // txtStopMonth
+            // txtEndMonth
             // 
-            this.txtStopMonth.Location = new System.Drawing.Point(279, 95);
-            this.txtStopMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtStopMonth.Name = "txtStopMonth";
-            this.txtStopMonth.Size = new System.Drawing.Size(68, 22);
-            this.txtStopMonth.TabIndex = 17;
+            this.txtEndMonth.Location = new System.Drawing.Point(279, 95);
+            this.txtEndMonth.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEndMonth.Name = "txtEndMonth";
+            this.txtEndMonth.Size = new System.Drawing.Size(68, 22);
+            this.txtEndMonth.TabIndex = 17;
             // 
             // label11
             // 
@@ -278,13 +278,13 @@ namespace CalendarApp
             this.label11.TabIndex = 16;
             this.label11.Text = "年";
             // 
-            // txtStopYear
+            // txtEndYear
             // 
-            this.txtStopYear.Location = new System.Drawing.Point(127, 95);
-            this.txtStopYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtStopYear.Name = "txtStopYear";
-            this.txtStopYear.Size = new System.Drawing.Size(95, 22);
-            this.txtStopYear.TabIndex = 15;
+            this.txtEndYear.Location = new System.Drawing.Point(127, 95);
+            this.txtEndYear.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEndYear.Name = "txtEndYear";
+            this.txtEndYear.Size = new System.Drawing.Size(95, 22);
+            this.txtEndYear.TabIndex = 15;
             // 
             // label12
             // 
@@ -299,7 +299,7 @@ namespace CalendarApp
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(127, 185);
-            this.txtTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(700, 22);
             this.txtTitle.TabIndex = 26;
@@ -314,13 +314,13 @@ namespace CalendarApp
             this.label13.TabIndex = 25;
             this.label13.Text = "タイトル";
             // 
-            // txtPlace
+            // txtLocatin
             // 
-            this.txtPlace.Location = new System.Drawing.Point(127, 220);
-            this.txtPlace.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtPlace.Name = "txtPlace";
-            this.txtPlace.Size = new System.Drawing.Size(700, 22);
-            this.txtPlace.TabIndex = 28;
+            this.txtLocatin.Location = new System.Drawing.Point(127, 220);
+            this.txtLocatin.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLocatin.Name = "txtLocatin";
+            this.txtLocatin.Size = new System.Drawing.Size(700, 22);
+            this.txtLocatin.TabIndex = 28;
             // 
             // label14
             // 
@@ -336,21 +336,21 @@ namespace CalendarApp
             // 
             this.chkAllDay.AutoSize = true;
             this.chkAllDay.Location = new System.Drawing.Point(127, 264);
-            this.chkAllDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAllDay.Margin = new System.Windows.Forms.Padding(4);
             this.chkAllDay.Name = "chkAllDay";
             this.chkAllDay.Size = new System.Drawing.Size(59, 19);
             this.chkAllDay.TabIndex = 30;
             this.chkAllDay.Text = "終日";
             this.chkAllDay.UseVisualStyleBackColor = true;
             // 
-            // txtContents
+            // txtNote
             // 
-            this.txtContents.Location = new System.Drawing.Point(127, 299);
-            this.txtContents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtContents.Multiline = true;
-            this.txtContents.Name = "txtContents";
-            this.txtContents.Size = new System.Drawing.Size(700, 249);
-            this.txtContents.TabIndex = 32;
+            this.txtNote.Location = new System.Drawing.Point(127, 299);
+            this.txtNote.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(700, 249);
+            this.txtNote.TabIndex = 32;
             // 
             // label15
             // 
@@ -367,23 +367,23 @@ namespace CalendarApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 630);
-            this.Controls.Add(this.txtContents);
+            this.Controls.Add(this.txtNote);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.chkAllDay);
-            this.Controls.Add(this.txtPlace);
+            this.Controls.Add(this.txtLocatin);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtStopMinute);
+            this.Controls.Add(this.txtEndMinute);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtStopHour);
+            this.Controls.Add(this.txtEndHour);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtStopDay);
+            this.Controls.Add(this.txtEndDay);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtStopMonth);
+            this.Controls.Add(this.txtEndMonth);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.txtStopYear);
+            this.Controls.Add(this.txtEndYear);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtStartMinute);
@@ -399,7 +399,7 @@ namespace CalendarApp
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InputEventDay";
             this.Text = "InputEventDay";
             this.Load += new System.EventHandler(this.InputEventDay_Load);
@@ -425,22 +425,22 @@ namespace CalendarApp
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtStartHour;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtStopMinute;
+        private System.Windows.Forms.TextBox txtEndMinute;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtStopHour;
+        private System.Windows.Forms.TextBox txtEndHour;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtStopDay;
+        private System.Windows.Forms.TextBox txtEndDay;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtStopMonth;
+        private System.Windows.Forms.TextBox txtEndMonth;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtStopYear;
+        private System.Windows.Forms.TextBox txtEndYear;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtPlace;
+        private System.Windows.Forms.TextBox txtLocatin;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckBox chkAllDay;
-        private System.Windows.Forms.TextBox txtContents;
+        private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label15;
     }
 }

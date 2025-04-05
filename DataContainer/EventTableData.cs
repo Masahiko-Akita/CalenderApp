@@ -8,6 +8,9 @@ namespace DataContainer
     {
         public int? CalendarID = null;
         public int? EventID = null;
+        public string Title = null;
+        public string Location = null;
+        public string Note = null;
         public DateTime StartDateTime = new DateTime();
         public DateTime EndDateTime = new DateTime();
         public bool AllDayFlag = false;
@@ -21,39 +24,24 @@ namespace DataContainer
         /// </summary>
         /// <param name="calendarID">カレンダーID</param>
         /// <param name="eventID">イベントID</param>
+        /// <param name="title"">タイトル</param>
+        /// <param name="location"">場所</param>
+        /// <param name="note"">内容</param>
         /// <param name="startDateTime">開始日時</param>
         /// <param name="endDateTime">終了日時</param>
         /// <param name="allDayFlag">全日フラグ</param>
-        public EventTableData(int? calendarID, int? eventID, DateTime startDateTime, DateTime endDateTime, bool allDayFlag)
+        public EventTableData(int? calendarID, int? eventID,
+            string title, string location, string note,
+            DateTime startDateTime, DateTime endDateTime, bool allDayFlag)
         {
             CalendarID = calendarID;
             EventID = eventID;
+            Title = title;
+            Location = location;
+            Note = note;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
             AllDayFlag = allDayFlag;
         }
-
-        public DateTime GetStartDate()
-        {
-            return StartDateTime;
-        }
-
-        /// <summary>
-        /// カラム情報を取得
-        /// </summary>
-        /// <returns>カラム情報</returns>
-        //public override Dictionary<string, DataType.Types> GetColumnInfo()
-        //{
-        //    Dictionary<string, DataType.Types> info = new Dictionary<string, DataType.Types>();
-        //    info.Add(EventDataKey.CalendarID, DataType.Types.Integer);
-        //    info.Add(EventDataKey.EventID, DataType.Types.Integer);
-        //    info.Add(EventDataKey.EventDateID, DataType.Types.Integer);
-        //    info.Add(EventDataKey.StartDate, DataType.Types.Text);
-        //    info.Add(EventDataKey.StartTime, DataType.Types.Text);
-        //    info.Add(EventDataKey.EndDate, DataType.Types.Text);
-        //    info.Add(EventDataKey.EndTime, DataType.Types.Text);
-        //    info.Add(EventDataKey.AllDayFlag, DataType.Types.Integer);
-        //    return info;
-        //}
     }
 }

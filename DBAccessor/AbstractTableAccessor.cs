@@ -64,9 +64,10 @@ namespace DBAccessor
             return m_selectData;
         }
 
-        //protected virtual void InsertData(List<AbstractTableData> data)
-        //{
-
-        //}
+        public int InsertData(string query)
+        {
+            SqlExecutor executor = new SqlExecutor();
+            return executor.Execute(query);
+        }
     }
 }

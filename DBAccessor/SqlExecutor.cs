@@ -1,8 +1,10 @@
 ﻿// SqlExecutor.cs
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System;
 using System.IO;
 using DataContainer;
+
 
 // DBのフィールド名と型名を関連付ける
 using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
@@ -80,15 +82,24 @@ namespace DBAccessor
         /// <returns>実行結果</returns>
         public int Execute(string strQuery)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(m_connectionString))
+            int result = -1;
+            try
             {
-                connection.Open();
-
-                using (SQLiteCommand command = new SQLiteCommand(strQuery, connection))
+                using (SQLiteConnection connection = new SQLiteConnection(m_connectionString))
                 {
-                    return command.ExecuteNonQuery();
+                    connection.Open();
+
+                    using (SQLiteCommand command = new SQLiteCommand(strQuery, connection))
+                    {
+                        result =  command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch
+            {
+                // エラー処理は上層で行う
+            }
+            return result;
         }
     }
 }
