@@ -177,8 +177,18 @@ namespace CalendarApp
             List<EventTableData> eventDatas = container.GetSelectData(targetDate);
 
             // ToDo for文で回す
-            EventTableData ev = eventDatas[0];
+            string strComment = string.Empty;
+            foreach (EventTableData eventData in eventDatas)
+            {
+                string startTime = eventData.StartDateTime.ToString("HH:mm");
+                string endTime   = eventData.EndDateTime.ToString("HH:mm");
+                strComment += startTime + "-" + endTime + " " +
+                    eventData.Title + " " +
+                    eventData.Location + " " +
+                    eventData.Note + "\n";
+            }
 
+            textBoxComment.Text = strComment;
         }
     }
 }

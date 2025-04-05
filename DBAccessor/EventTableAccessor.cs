@@ -25,6 +25,11 @@ namespace DBAccessor
             DicColumnInfoType info = new DicColumnInfoType();
             info.Add(EventDataKey.CalendarID, DataType.Types.Integer);
             info.Add(EventDataKey.EventID, DataType.Types.Integer);
+
+            info.Add(EventDataKey.Title, DataType.Types.Text);
+            info.Add(EventDataKey.Location, DataType.Types.Text);
+            info.Add(EventDataKey.Note, DataType.Types.Text);
+
             info.Add(EventDataKey.StartDateTime, DataType.Types.Text);
             info.Add(EventDataKey.EndDateTime, DataType.Types.Text);
             info.Add(EventDataKey.AllDayFlag, DataType.Types.Integer);
