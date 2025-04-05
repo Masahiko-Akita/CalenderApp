@@ -185,7 +185,7 @@ namespace CalendarApp
                 strComment += startTime + "-" + endTime + " " +
                     eventData.Title + " " +
                     eventData.Location + " " +
-                    eventData.Note + "\n";
+                    eventData.Note + "\r\n";
             }
 
             textBoxComment.Text = strComment;
