@@ -10,16 +10,21 @@ namespace DataContainer
     // 抽象クラス
     public abstract class AbstractDataContainer<T>
     {
-        private List<AbstractTableData> m_datas;
+        private List<AbstractTableData> m_datas = new List<AbstractTableData>();
         public abstract List<T> GetSelectData();
 
-        public void AddData(List<AbstractTableData> datas)
+        public void AddData(AbstractTableData data)
         {
-            m_datas = datas;
+            m_datas.Add(data);
         }
         protected List<AbstractTableData> GetData()
         {
             return m_datas;
+        }
+
+        public void ClearData()
+        {
+            m_datas.Clear();
         }
 
         public abstract void UpdateContainer();

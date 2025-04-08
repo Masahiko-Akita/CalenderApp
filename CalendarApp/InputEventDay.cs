@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataContainer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,6 +36,15 @@ namespace CalendarApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+
+            // Insert文のサンプル
+            EventDataContainer container = new EventDataContainer();
+
+            DateTime today = DateTime.Now;
+            EventTableData data = new EventTableData(0, 1, 2, today, today, false);
+            container.AddData(data);
+            container.UpdateContainer();
+
             this.Close();
         }
     }

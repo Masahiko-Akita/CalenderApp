@@ -1,5 +1,6 @@
 ﻿// AbstractTableAccessor.cs
 using DataContainer;
+using System;
 using System.Collections.Generic;
 
 // DBのフィールド名と型名を関連付ける
@@ -36,7 +37,7 @@ namespace DBAccessor
 
         public abstract string GetSelectSql();
 
-        protected List<string> GetInsertSql(string tableName,List<Dictionary<string, object>> datas)
+        protected List<string> GetInsertSql(string tableName, List<Dictionary<string, object>> datas)
         {
             List<string> sql = new List<string>();
 
@@ -45,8 +46,29 @@ namespace DBAccessor
                 // カラム名をコンマ区切りで取得
                 string columns = string.Join(", ", data.Keys);
 
-                // 値をシングルクォートで囲み、コンマ区切りで取得
-                string values = string.Join(", ", data.Values);
+                // 値を適切にフォーマットして取得
+                List<string> formattedValues = new List<string>();
+                foreach (var value in data.Values)
+                {
+                    if (value is DateTime dateTime)
+                    {
+                        // DateTime型ならシングルクォートで囲んでISO 8601形式に変換
+                        formattedValues.Add($"'{dateTime:yyyy-MM-dd HH:mm:ss}'");
+                    }
+                    else if (value is string)
+                    {
+                        // 文字列型もシングルクォートで囲む
+                        formattedValues.Add($"'{value}'");
+                    }
+                    else
+                    {
+                        // その他の型はそのまま追加
+                        formattedValues.Add(value.ToString());
+                    }
+                }
+
+                // 値をコンマ区切りで結合
+                string values = string.Join(", ", formattedValues);
 
                 // SQL文を構築
                 sql.Add($"INSERT INTO {tableName} ({columns}) VALUES ({values});");

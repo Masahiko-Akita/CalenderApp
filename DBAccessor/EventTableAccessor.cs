@@ -45,7 +45,7 @@ namespace DBAccessor
 
         public List<string> GetInsertSql(List<Dictionary<string, object>> datas)
         {
-            return GetInsertSql("EVENT_DATA", datas);
+            return GetInsertSql("EVENT_DATE", datas);
         }
     }
 }

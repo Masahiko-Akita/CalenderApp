@@ -115,6 +115,7 @@ namespace DataContainer
 
                     dic.Add(EventDataKey.CalendarID, tableData.CalendarID);
                     dic.Add(EventDataKey.EventID, tableData.EventID);
+                    dic.Add(EventDataKey.EventDateID, tableData.EventDataID);
                     dic.Add(EventDataKey.StartDateTime, tableData.StartDateTime);
                     dic.Add(EventDataKey.EndDateTime,tableData.EndDateTime);
                     dic.Add(EventDataKey.AllDayFlag,tableData.AllDayFlag);
@@ -122,7 +123,16 @@ namespace DataContainer
                     insertData.Add(dic);
                 }
             }
-            accessor.GetInsertSql(insertData);
+
+            // TODO 主キーが重複していたらUPDATE文にする
+            // TODO SQL文をListにする必要がない。上のループでInsertする。
+            SqlExecutor executor = new SqlExecutor();
+            List<string> sqlList = accessor.GetInsertSql(insertData);
+            foreach(string sql in sqlList) {
+                executor.Execute(sql);
+            }
+
+            ClearData();
         }
     }
 }
