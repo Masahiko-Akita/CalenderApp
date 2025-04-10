@@ -42,8 +42,8 @@ namespace DataContainer
             foreach (DicDBRecord aRecord in selectResult)
             {
                 bool enabled = false;
-                int? calendarID = null;
-                int? eventID = null;
+                int calendarID = 0;
+                int eventID = 0;
                 string title = String.Empty;
                 string location = String.Empty;
                 string note = String.Empty;
@@ -143,7 +143,29 @@ namespace DataContainer
             string strInserSql = accessor.GetInsertSql(dic);
 
             // Insert文の実行
-            return accessor.InsertData(strInserSql);
+            return accessor.Execute(strInserSql);
+        }
+
+        public int UpdateEvent(EventTableData inputEvent)
+        {
+            EventTableAccessor accessor = new EventTableAccessor();
+
+            // イベント入力画面で得られた情報を Dictionary に詰める
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+
+            dic.Add(EventDataKey.Title, "'" + inputEvent.Title + "'");
+            dic.Add(EventDataKey.Location, "'" + inputEvent.Location + "'");
+            dic.Add(EventDataKey.Note, "'" + inputEvent.Note + "'");
+
+            dic.Add(EventDataKey.StartDateTime, "'" + inputEvent.StartDateTime + "'");
+            dic.Add(EventDataKey.EndDateTime, "'" + inputEvent.EndDateTime + "'");
+            dic.Add(EventDataKey.AllDayFlag, inputEvent.AllDayFlag ? 1 : 0);
+
+            // insert文の取得
+            string strUpdateSql = accessor.GetUpdateSql(inputEvent.EventID, dic);
+
+            // Update 文の実行
+            return accessor.Execute(strUpdateSql);
         }
     }
 }

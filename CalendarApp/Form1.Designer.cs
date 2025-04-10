@@ -37,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnCurMonth = new System.Windows.Forms.Button();
             this.btnNextMonth = new System.Windows.Forms.Button();
-            this.textBoxComment = new System.Windows.Forms.TextBox();
+            this.InfoPanelBase = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // tableLayoutPanelMain
@@ -159,21 +159,21 @@
             this.btnNextMonth.UseVisualStyleBackColor = true;
             this.btnNextMonth.Click += new System.EventHandler(this.OnClickNextMonth);
             // 
-            // textBoxComment
+            // InfoPanelBase
             // 
-            this.textBoxComment.Location = new System.Drawing.Point(201, 648);
-            this.textBoxComment.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxComment.Multiline = true;
-            this.textBoxComment.Name = "textBoxComment";
-            this.textBoxComment.Size = new System.Drawing.Size(679, 99);
-            this.textBoxComment.TabIndex = 9;
+            this.InfoPanelBase.AutoScroll = true;
+            this.InfoPanelBase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InfoPanelBase.Location = new System.Drawing.Point(201, 650);
+            this.InfoPanelBase.Name = "InfoPanelBase";
+            this.InfoPanelBase.Size = new System.Drawing.Size(680, 114);
+            this.InfoPanelBase.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 776);
-            this.Controls.Add(this.textBoxComment);
+            this.Controls.Add(this.InfoPanelBase);
             this.Controls.Add(this.btnNextMonth);
             this.Controls.Add(this.btnCurMonth);
             this.Controls.Add(this.label2);
@@ -202,7 +202,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCurMonth;
         private System.Windows.Forms.Button btnNextMonth;
-        private System.Windows.Forms.TextBox textBoxComment;
+        private System.Windows.Forms.Panel InfoPanelBase;
     }
 }
 

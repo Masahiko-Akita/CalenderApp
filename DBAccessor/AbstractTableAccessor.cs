@@ -47,6 +47,25 @@ namespace DBAccessor
             return sql;
         }
 
+        protected string GetUpdateSql(string tableName, int eventid, Dictionary<string, object> data)
+        {
+            // カラム名をコンマ区切りで取得
+            string updatedata = string.Empty;
+            foreach (KeyValuePair<string, object> val in data)
+            {
+                updatedata += val.Key.ToString() + '=' + val.Value.ToString() + ',';
+            }
+            // 最後のコンマが邪魔なので消す
+            updatedata = updatedata.TrimEnd(',');
+
+            // 値をシングルクォートで囲み、コンマ区切りで取得
+            string where = $"event_id = {eventid}";
+
+            // SQL文を構築
+            string sql = $"UPDATE {tableName} SET {updatedata} WHERE {where};";
+            return sql;
+        }
+
         /// <summary>
         /// 抽出したデータを取得
         /// </summary>
@@ -64,7 +83,7 @@ namespace DBAccessor
             return m_selectData;
         }
 
-        public int InsertData(string query)
+        public int Execute(string query)
         {
             SqlExecutor executor = new SqlExecutor();
             return executor.Execute(query);

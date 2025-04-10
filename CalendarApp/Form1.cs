@@ -172,23 +172,26 @@ namespace CalendarApp
         /// <param name="targetDate"></param>
         public void UpdateLabel(DateTime targetDate)
         {
+            // すでに追加した子パネルがあれば全削除する。
+            InfoPanelBase.Controls.Clear();
+
             // ここで DB に対して targetDate を元に SQL Select 文を作成/実行
             EventDataContainer container = new EventDataContainer();
             List<EventTableData> eventDatas = container.GetSelectData(targetDate);
 
-            // ToDo for文で回す
-            string strComment = string.Empty;
+            // Select文で見つかったすべてのイベントに対して
+            // 子Panelを追加
+            int index = 0;
             foreach (EventTableData eventData in eventDatas)
             {
-                string startTime = eventData.StartDateTime.ToString("HH:mm");
-                string endTime   = eventData.EndDateTime.ToString("HH:mm");
-                strComment += startTime + "-" + endTime + " " +
-                    eventData.Title + " " +
-                    eventData.Location + " " +
-                    eventData.Note + "\r\n";
-            }
+                int nYSize = Font.Height + 6;
+                InfoPanel childPanel = new InfoPanel(InfoPanelBase.Width, eventData);
+                childPanel.Size = new Size(InfoPanelBase.Width-2, nYSize);
+                childPanel.Location = new Point(0, nYSize * index);
+                InfoPanelBase.Controls.Add(childPanel);
 
-            textBoxComment.Text = strComment;
+                index++;
+            }
         }
     }
 }

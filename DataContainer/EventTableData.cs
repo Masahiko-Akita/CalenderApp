@@ -6,8 +6,8 @@ namespace DataContainer
 {
     public class EventTableData : AbstractTableData
     {
-        public int? CalendarID = null;
-        public int? EventID = null;
+        public int CalendarID = 0;
+        public int EventID = 0;
         public string Title = null;
         public string Location = null;
         public string Note = null;
@@ -30,7 +30,7 @@ namespace DataContainer
         /// <param name="startDateTime">開始日時</param>
         /// <param name="endDateTime">終了日時</param>
         /// <param name="allDayFlag">全日フラグ</param>
-        public EventTableData(int? calendarID, int? eventID,
+        public EventTableData(int calendarID, int eventID,
             string title, string location, string note,
             DateTime startDateTime, DateTime endDateTime, bool allDayFlag)
         {

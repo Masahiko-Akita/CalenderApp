@@ -60,5 +60,10 @@ namespace DBAccessor
         {
             return base.GetInsertSql("EVENT", data);
         }
+
+        public string GetUpdateSql(int eventid, Dictionary<string, object> data)
+        {
+            return base.GetUpdateSql("EVENT", eventid, data);
+        }
     }
 }
