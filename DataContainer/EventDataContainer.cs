@@ -161,11 +161,22 @@ namespace DataContainer
             dic.Add(EventDataKey.EndDateTime, "'" + inputEvent.EndDateTime + "'");
             dic.Add(EventDataKey.AllDayFlag, inputEvent.AllDayFlag ? 1 : 0);
 
-            // insert文の取得
+            // update文の取得
             string strUpdateSql = accessor.GetUpdateSql(inputEvent.EventID, dic);
 
             // Update 文の実行
             return accessor.Execute(strUpdateSql);
+        }
+
+        public int DeleteEvent(EventTableData inputEvent)
+        {
+            EventTableAccessor accessor = new EventTableAccessor();
+
+            // delete文の取得
+            string strDeleteSql = accessor.GetDeleteSql(inputEvent.EventID);
+
+            // Update 文の実行
+            return accessor.Execute(strDeleteSql);
         }
     }
 }

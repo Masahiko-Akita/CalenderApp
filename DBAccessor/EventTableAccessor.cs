@@ -65,5 +65,10 @@ namespace DBAccessor
         {
             return base.GetUpdateSql("EVENT", eventid, data);
         }
+
+        public string GetDeleteSql(int eventid)
+        {
+            return base.GetDeleteSql("EVENT", eventid);
+        }
     }
 }

@@ -30,6 +30,9 @@ namespace CalendarApp
             m_dtStart = date;
             m_dtEnd = date;
 
+            // 削除ボタンを隠す
+            btnDelete.Visible = false;
+
             // 開始
             this.txtStartYear.Text  = date.Year.ToString();
             this.txtStartMonth.Text = date.Month.ToString();
@@ -45,6 +48,10 @@ namespace CalendarApp
         public InputEventDay(EventTableData eventData)
         {
             InitializeComponent();
+
+            // 削除ボタンを表示
+            btnDelete.Visible = true;
+
             m_bNewEvent = false;
             m_dtStart = eventData.StartDateTime;
             m_dtEnd = eventData.EndDateTime;
@@ -130,7 +137,7 @@ namespace CalendarApp
             if (mainForm != null)
             {
                 // ラベルを更新
-                mainForm.UpdateLabel(startDateTime);
+                mainForm.UpdateLabel(m_dtStart);
             }
             this.Close();
         }
@@ -138,7 +145,29 @@ namespace CalendarApp
         // 削除
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            // イベントデータに変換
+            // Delete文に必要なのは m_eventID のみで他は使わない
+            EventTableData inputEvent = new EventTableData(0, m_eventID,
+                txtTitle.Text, txtLocation.Text, txtNote.Text,
+                DateTime.Now, DateTime.Now, chkAllDay.Checked);
 
+            // DB に対して targetDate を元に SQL文を作成/実行
+            EventDataContainer container = new EventDataContainer();
+
+            // 削除
+            if (container.DeleteEvent(inputEvent) <= 0)
+            {
+                MessageBox.Show("Deleteに失敗しました");
+            }
+
+            // Formを更新する
+            Form1 mainForm = Application.OpenForms["Form1"] as Form1;
+            if (mainForm != null)
+            {
+                // ラベルを更新
+                mainForm.UpdateLabel(m_dtStart);
+            }
+            this.Close();
         }
 
         // キャンセル

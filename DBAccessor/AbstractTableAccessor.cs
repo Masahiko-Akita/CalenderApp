@@ -58,11 +58,21 @@ namespace DBAccessor
             // 最後のコンマが邪魔なので消す
             updatedata = updatedata.TrimEnd(',');
 
-            // 値をシングルクォートで囲み、コンマ区切りで取得
+            // Where句
             string where = $"event_id = {eventid}";
 
             // SQL文を構築
             string sql = $"UPDATE {tableName} SET {updatedata} WHERE {where};";
+            return sql;
+        }
+
+        protected string GetDeleteSql(string tableName, int eventid)
+        {
+            // Where句
+            string where = $"event_id = {eventid}";
+
+            // SQL文を構築
+            string sql = $"DELETE FROM {tableName} WHERE {where};";
             return sql;
         }
 
