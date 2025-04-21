@@ -1,7 +1,4 @@
-﻿// EventTableAccessor.cs
-using DataContainer;
-using System;
-using System.Collections.Generic;
+﻿using DataContainer;
 
 // DBのフィールド名と型名を関連付ける
 using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
@@ -33,6 +30,15 @@ namespace DBAccessor
         }
 
         /// <summary>
+        /// テーブル名を取得
+        /// </summary>
+        /// <returns>テーブル名</returns>
+        protected override string GetTableName()
+        {
+            return "EVENT_DATE";
+        }
+
+        /// <summary>
         /// SELECT文を取得
         /// </summary>
         /// <returns>SELECT文</returns>
@@ -41,11 +47,6 @@ namespace DBAccessor
             // TODO：WHERE句は仮です
             // たぶんこうなる　⇒　WHERE 検索日時 >= StartDateTime AND 検索日時 <= EndDateTime
             return "SELECT * FROM EVENT_DATE WHERE " + EventDataKey.CalendarID + " = 0 AND " + EventDataKey.StartDateTime + " = \"2025-01-20\"";
-        }
-
-        public List<string> GetInsertSql(List<Dictionary<string, object>> datas)
-        {
-            return GetInsertSql("EVENT_DATE", datas);
         }
     }
 }

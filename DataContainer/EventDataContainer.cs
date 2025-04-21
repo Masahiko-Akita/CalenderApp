@@ -1,20 +1,13 @@
-﻿// EventDataContainer.cs
+﻿using DBAccessor;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DBAccessor;
-
 // DBのフィールド名と型名を関連付ける
 using DicColumnInfoType = System.Collections.Generic.Dictionary<string, DataContainer.DataType.Types>;
-
 // DBの1レコードに対応する
 // DBのフィールドとそこに格納されている値をDictionayコンテナで集める。
 // とりあえず string型で取り出す。
 // 後で各型に変換する
 using DicDBRecord = System.Collections.Generic.Dictionary<string, string>;
-
 // Selet文の実行結果は複数レコードで帰ってくるので
 // DicDBRecord をリストで管理したもの
 //  List<DicDBRecord>
@@ -101,14 +94,18 @@ namespace DataContainer
             return tableData;
         }
 
+        /// <summary>
+        /// コンテナの更新
+        /// </summary>
         public override void UpdateContainer()
         {
-            List<Dictionary<string, object>> insertData = new List<Dictionary<string, object>>();
             EventTableAccessor accessor = new EventTableAccessor();
+            SqlExecutor executor = new SqlExecutor();
             List<AbstractTableData> datas = GetData();
-            foreach(AbstractTableData data in datas)
+            foreach (AbstractTableData data in datas)
             {
-                if(data is EventTableData){
+                if (data is EventTableData)
+                {
                     EventTableData tableData = (EventTableData)data;
 
                     Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -117,19 +114,27 @@ namespace DataContainer
                     dic.Add(EventDataKey.EventID, tableData.EventID);
                     dic.Add(EventDataKey.EventDateID, tableData.EventDataID);
                     dic.Add(EventDataKey.StartDateTime, tableData.StartDateTime);
-                    dic.Add(EventDataKey.EndDateTime,tableData.EndDateTime);
-                    dic.Add(EventDataKey.AllDayFlag,tableData.AllDayFlag);
+                    dic.Add(EventDataKey.EndDateTime, tableData.EndDateTime);
+                    dic.Add(EventDataKey.AllDayFlag, tableData.AllDayFlag);
 
-                    insertData.Add(dic);
+                    string uniqueWhere = EventDataKey.CalendarID + " = " + tableData.CalendarID.ToString()
+                        + " AND " + EventDataKey.EventID + " = " + tableData.EventID.ToString()
+                        + " AND " + EventDataKey.EventDateID + " = " + tableData.EventDataID.ToString();
+                    string selectSql = accessor.GetSelectSql(uniqueWhere);
+                    DicColumnInfoType columnInfo = accessor.GetColumnInfo();
+                    ListDBResult result = executor.Read(selectSql, columnInfo);
+                    if (result.Count == 0)
+                    {
+                        string insertSql = accessor.GetInsertSql(dic);
+                        executor.Execute(insertSql);
+                    }
+                    else
+                    {
+
+                        string updateSql = accessor.GetUpdateSql(dic, uniqueWhere);
+                        executor.Execute(updateSql);
+                    }
                 }
-            }
-
-            // TODO 主キーが重複していたらUPDATE文にする
-            // TODO SQL文をListにする必要がない。上のループでInsertする。
-            SqlExecutor executor = new SqlExecutor();
-            List<string> sqlList = accessor.GetInsertSql(insertData);
-            foreach(string sql in sqlList) {
-                executor.Execute(sql);
             }
 
             ClearData();
