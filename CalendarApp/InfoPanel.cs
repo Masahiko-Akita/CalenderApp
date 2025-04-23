@@ -46,7 +46,7 @@ namespace CalendarApp
 
             // このPanelをシングルクリックしたときのイベントハンドラの追加
             // 画面下部分にイベントを表示
-            this.Click += new EventHandler(OnClick);
+            this.Click += OnClick;
         }
 
         /// <summary>

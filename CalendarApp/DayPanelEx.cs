@@ -46,8 +46,8 @@ namespace CalendarApp
         private void ClickTimer_Tick(object sender, EventArgs e)
         {
             clickTimer.Stop();
-            Form form = this.FindForm();
-            if (form is Form1 mainForm)
+            Form1 mainForm = Application.OpenForms["Form1"] as Form1;
+            if (mainForm != null)
             {
                 if (isDoubleClick)
                 {

@@ -133,6 +133,8 @@ namespace CalendarApp
             }
 
             // Formを更新する
+            // Form form = this.FindForm() だと自分自身が見つかるので
+            //  Form1という名前を持ったformを探す
             Form1 mainForm = Application.OpenForms["Form1"] as Form1;
             if (mainForm != null)
             {
