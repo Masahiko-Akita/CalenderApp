@@ -1,7 +1,7 @@
 ﻿
 namespace CalendarApp
 {
-    partial class InputEventDay
+    partial class InputEventDayBase
     {
         /// <summary>
         /// Required designer variable.
@@ -27,7 +27,7 @@ namespace CalendarApp
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        protected void InitializeComponent()
         {
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,7 +72,7 @@ namespace CalendarApp
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+
             // 
             // label1
             // 
@@ -410,42 +410,41 @@ namespace CalendarApp
             this.Text = "InputEventDay";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnSave;
+        protected System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnDelete;
+        protected System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.TextBox txtStartYear;
-        private System.Windows.Forms.TextBox txtStartMonth;
+        protected System.Windows.Forms.TextBox txtStartYear;
+        protected System.Windows.Forms.TextBox txtStartMonth;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtStartDay;
+        protected System.Windows.Forms.TextBox txtStartDay;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtStartMinute;
+        protected System.Windows.Forms.TextBox txtStartMinute;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtStartHour;
+        protected System.Windows.Forms.TextBox txtStartHour;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtEndMinute;
+        protected System.Windows.Forms.TextBox txtEndMinute;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtEndHour;
+        protected System.Windows.Forms.TextBox txtEndHour;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtEndDay;
+        protected System.Windows.Forms.TextBox txtEndDay;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtEndMonth;
+        protected System.Windows.Forms.TextBox txtEndMonth;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtEndYear;
+        protected System.Windows.Forms.TextBox txtEndYear;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtTitle;
+        protected System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtLocation;
+        protected System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.CheckBox chkAllDay;
-        private System.Windows.Forms.TextBox txtNote;
+        protected System.Windows.Forms.CheckBox chkAllDay;
+        protected System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label15;
     }
 }

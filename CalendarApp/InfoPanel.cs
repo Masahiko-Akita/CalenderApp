@@ -56,8 +56,8 @@ namespace CalendarApp
         /// <param name="e">イベントデータを含むEventArgsオブジェクト</param>
         public void OnClick(Object sender, EventArgs e)
         {
-            // イベント入力ダイアログ
-            InputEventDay eventDayDlg = new InputEventDay(_eventData);
+            // イベント入力ダイアログ Update
+            InputEventDayUpdate eventDayDlg = new InputEventDayUpdate(_eventData);
             eventDayDlg.Show();
         }
     }

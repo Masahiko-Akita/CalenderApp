@@ -156,13 +156,13 @@ namespace CalendarApp
         }
 
         /// <summary>
-        /// イベント入力画面を表示
+        /// 新規イベント入力画面を表示
         /// </summary>
         /// <param name="targetDate"></param>
         public void ShowEventInput(DateTime targetDate)
         {
             // イベント入力ダイアログ
-            InputEventDay eventDayDlg = new InputEventDay(targetDate);
+            InputEventDayInsert eventDayDlg = new InputEventDayInsert(targetDate);
             eventDayDlg.Show();
         }
 
